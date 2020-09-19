@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "OpenOCD: Download",
+      "command": "openocd",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "args": [
+        "-f",
+        "openocd.cfg",
+        "-c",
+        "program ${workspaceFolder}/build/${workspaceFolderBasename}.hex; reset run; exit;"
+      ],
+      "dependsOn": "Make: Make all"
+    },
+    {
+      "label": "Make: Make all",
+      "type": "shell",
+      "command": "make -j8",
+      "problemMatcher": "$gcc"
+    }
+  ]
+}
